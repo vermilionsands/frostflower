@@ -4,6 +4,7 @@
             [duratom.core :as duratom]
             [duratom.utils :as ut])
   (:import [java.io File]
+           [java.nio.file AccessDeniedException]
            [java.util.concurrent.locks ReentrantLock]))
 
 (def ^:private default-file-rw @#'duratom/default-file-rw)
@@ -12,7 +13,12 @@
 (defn- save! [path write-fn state-atom]
   (let [tmp-file-name (str path ".tmp")]
     (write-fn tmp-file-name @state-atom)
-    (ut/move-file! tmp-file-name path)))
+    (try
+      (ut/move-file! tmp-file-name path)
+      ;; retry for occasional Windows error
+      (catch AccessDeniedException _
+        (Thread/sleep 10)
+        (ut/move-file! tmp-file-name path)))))
 
 (defn- read! [path read-fn]
   (try
