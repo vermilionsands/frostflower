@@ -15,7 +15,7 @@ There is an additional backend dispatch for `:sync-local-file` key.
 
 ```clj
 ;; require frostflower to make the additional dispatch available
-(require 'frostflower)
+(require '[vermilionsands.frostflower :as frostflower])
 (require '[duratom.core :as duratom])
 
 (duratom :sync-local-file
