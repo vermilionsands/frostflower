@@ -1,4 +1,4 @@
-(defproject vermilionsands/frostflower "0.1.1"
+(defproject vermilionsands/frostflower "0.1.2"
   :description "A local durable atom backend for duratom."
   :url "https://github.com/vermilionsands/frostflower"
   :license {:name "Eclipse Public License"

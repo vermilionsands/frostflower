@@ -1,8 +1,8 @@
-(ns frostflower-test
+(ns vermilionsands.frostflower-test
   (:require [clojure.java.io :as io]
             [clojure.test :refer [is deftest]]
             [duratom.core :as duratom]
-            frostflower)
+            [vermilionsands.frostflower :as frostflower])
   (:import [java.io File]
            [java.util.concurrent CountDownLatch]))
 
